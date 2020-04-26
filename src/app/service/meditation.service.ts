@@ -19,29 +19,29 @@ export class MeditationService {
         this.fetchfromDb();
     }
 
-    create() {
-        const meditationsCollection = firebase.firestore().collection("meditations");
-        const meditationArray: Array<MeditationModel> = [
-            // tslint:disable-next-line: max-line-length
-            {
-                id: "", name: "Ancient1", backgroundColor: "#D94E29", fontColor: "#ffffff", chapter: [
-                    { id: "1", name: "Being Aware", playUri: "" }, { id: "2", name: "Getting Control", playUri: "" }]
-            },
-            {
-                id: "", name: "Ancient2", backgroundColor: "#252EDF", fontColor: "#ffffff", chapter: [
-                    { id: "1", name: "Being Aware", playUri: "" }, { id: "2", name: "Getting Control", playUri: "" }]
-            }
+    // create() {
+    //     const meditationsCollection = firebase.firestore().collection("meditations");
+    //     const meditationArray: Array<MeditationModel> = [
+    //         // tslint:disable-next-line: max-line-length
+    //         {
+    //             id: "", name: "Ancient1", backgroundColor: "#D94E29", fontColor: "#ffffff", chapter: [
+    //                 { id: "1", name: "Being Aware", playUri: "" }, { id: "2", name: "Getting Control", playUri: "" }]
+    //         },
+    //         {
+    //             id: "", name: "Ancient2", backgroundColor: "#252EDF", fontColor: "#ffffff", chapter: [
+    //                 { id: "1", name: "Being Aware", playUri: "" }, { id: "2", name: "Getting Control", playUri: "" }]
+    //         }
 
-        ];
-        meditationArray.forEach((meditation) => {
-            meditationsCollection.add({
-                name: meditation.name,
-                backgroundColor: meditation.backgroundColor,
-                fontColor: meditation.fontColor,
-                chapter: meditation.chapter
-            });
-        });
-    }
+    //     ];
+    //     meditationArray.forEach((meditation) => {
+    //         meditationsCollection.add({
+    //             name: meditation.name,
+    //             backgroundColor: meditation.backgroundColor,
+    //             fontColor: meditation.fontColor,
+    //             chapter: meditation.chapter
+    //         });
+    //     });
+    // }
 
     fetchfromDb() {
         this.subject.next([]);
@@ -65,12 +65,24 @@ export class MeditationService {
 
     // BROWSE Single Meditation that can be shared in BROWSE
     // tslint:disable-next-line: member-ordering
-    private browseMeditationSubject: BehaviorSubject<MeditationModel> = new BehaviorSubject<MeditationModel>(null);
+    private browseMeditationSub: BehaviorSubject<MeditationModel> = new BehaviorSubject<MeditationModel>(null);
     // tslint:disable-next-line: member-ordering
-    browseMeditationObservable: Observable<MeditationModel> = this.browseMeditationSubject.asObservable();
+    browseMeditationObs: Observable<MeditationModel> = this.browseMeditationSub.asObservable();
 
     // tslint:disable-next-line: member-ordering
     setBrowseMeditation(meditation: MeditationModel) {
-        this.browseMeditationSubject.next(meditation);
+        this.browseMeditationSub.next(meditation);
     }
+
+    // BROWSE Single Meditation that can be shared in BROWSE
+    // tslint:disable-next-line: member-ordering
+    private browseChapterSub: BehaviorSubject<ChapterModel> = new BehaviorSubject<ChapterModel>(null);
+    // tslint:disable-next-line: member-ordering
+    browseChapterObs: Observable<ChapterModel> = this.browseChapterSub.asObservable();
+
+    // tslint:disable-next-line: member-ordering
+    setBrowseChapter(chapter: ChapterModel) {
+        this.browseChapterSub.next(chapter);
+    }
+
 }

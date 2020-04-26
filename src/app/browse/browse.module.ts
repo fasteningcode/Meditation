@@ -5,6 +5,7 @@ import { BrowseRoutingModule } from "./browse-routing.module";
 import { BrowseComponent } from "./browse.component";
 import { DetailsComponent } from "./details/details.component";
 import { SharedModule } from "./../shared/shared.module";
+import { PlayerComponent } from "./player/player.component";
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { SharedModule } from "./../shared/shared.module";
     ],
     declarations: [
         BrowseComponent,
-        DetailsComponent
+        DetailsComponent,
+        PlayerComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

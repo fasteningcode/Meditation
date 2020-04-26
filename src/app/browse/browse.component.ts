@@ -13,9 +13,9 @@ export class BrowseComponent implements OnInit {
     meditations$: Array<MeditationModel>;
 
     constructor(private page: Page,
-        private meditationService: MeditationService,
-        private router: RouterExtensions,
-        private activatedRoute: ActivatedRoute
+                private meditationService: MeditationService,
+                private router: RouterExtensions,
+                private activatedRoute: ActivatedRoute
 
     ) {
 
@@ -31,9 +31,8 @@ export class BrowseComponent implements OnInit {
     }
 
     onTapMeditation(meditation: MeditationModel): void {
-        console.log(meditation);
+        // console.log(meditation);
         this.meditationService.setBrowseMeditation(meditation);
         this.router.navigate(["../details"], { relativeTo: this.activatedRoute });
-
     }
 }

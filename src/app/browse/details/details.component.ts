@@ -1,6 +1,10 @@
+import { ActivatedRoute } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { ModalDialogService } from "nativescript-angular";
+
 import { MeditationModel } from "./../../models/meditation.model";
 import { MeditationService } from "./../../service/meditation.service";
-import { Component, OnInit } from "@angular/core";
 
 @Component({
     selector: "ns-details",
@@ -10,16 +14,20 @@ import { Component, OnInit } from "@angular/core";
 export class DetailsComponent implements OnInit {
 
     meditation: MeditationModel;
-    constructor(private meditationService: MeditationService) { }
+    constructor(private meditationService: MeditationService,
+                private router: RouterExtensions,
+                private activatedRoute: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.meditationService.browseMeditationObservable.subscribe((data) => {
+        this.meditationService.browseMeditationObs.subscribe((data) => {
             this.meditation = data;
         });
     }
 
-    onTapMeditation(item) {
-
+    onTapMeditation(chapter) {
+        console.log(chapter);
+        this.meditationService.setBrowseChapter(chapter);
+        this.router.navigate(["../playerBrowse"], {relativeTo : this.activatedRoute});
     }
 
 }

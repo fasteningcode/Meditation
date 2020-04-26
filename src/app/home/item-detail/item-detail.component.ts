@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewContainerRef } from "@angular/core";
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular";
+
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 
@@ -14,7 +16,9 @@ export class ItemDetailComponent implements OnInit {
     constructor(
         private _data: DataService,
         private _route: ActivatedRoute,
-        private _routerExtensions: RouterExtensions
+        private _routerExtensions: RouterExtensions,
+        private modalService: ModalDialogService,
+        private viewContainerRef: ViewContainerRef
     ) { }
 
     ngOnInit(): void {
@@ -24,5 +28,10 @@ export class ItemDetailComponent implements OnInit {
 
     onBackTap(): void {
         this._routerExtensions.back();
+    }
+
+    launchPlayer() {
+        console.log("clicked");
+       
     }
 }
