@@ -11,7 +11,7 @@ export class BrowseComponent implements OnInit {
     meditations$: Array<MeditationModel>;
 
     constructor(private page: Page,
-        private meditationService: MeditationService
+                private meditationService: MeditationService
     ) {
         // Use the component constructor to inject providers.
     }
