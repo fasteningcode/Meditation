@@ -3,12 +3,14 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { BrowseRoutingModule } from "./browse-routing.module";
 import { BrowseComponent } from "./browse.component";
-import { DetailsComponent } from './details/details.component';
+import { DetailsComponent } from "./details/details.component";
+import { SharedModule } from "./../shared/shared.module";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        BrowseRoutingModule
+        BrowseRoutingModule,
+        SharedModule
     ],
     declarations: [
         BrowseComponent,

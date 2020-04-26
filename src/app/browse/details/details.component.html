@@ -1,1 +1,10 @@
-<Button [text]="meditation.name" class="btn btn-primary"></Button>
+<ns-action-bar title="Expenses" [showBackButton]="true">
+   <ActionItem ios.position="right" android.position="actionBar">
+      <Label text="&#xf021;" class="nt-icon fas" (tap)="onRefresh()"></Label>
+   </ActionItem>
+</ns-action-bar>
+
+<StackLayout>
+   <Label [text]="meditation.name" [backgroundColor]="meditation.backgroundColor" [color]="meditation.fontColor"
+      width="100%" height="100%"></Label>
+</StackLayout>
