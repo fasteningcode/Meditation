@@ -39,10 +39,6 @@ export class MeditationService {
                 backgroundColor: meditation.backgroundColor,
                 fontColor: meditation.fontColor,
                 chapter: meditation.chapter
-            }).then((document) => {
-                console.log("====================================");
-                console.log(document);
-                console.log("====================================");
             });
         });
     }

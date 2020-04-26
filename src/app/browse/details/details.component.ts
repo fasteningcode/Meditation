@@ -18,4 +18,8 @@ export class DetailsComponent implements OnInit {
         });
     }
 
+    onTapMeditation(item) {
+
+    }
+
 }

@@ -1,7 +1,13 @@
 <ns-action-bar [title]="meditation.name" [showBackButton]="true" [backgroundColor]="meditation.backgroundColor">
 </ns-action-bar>
 
-<StackLayout>
-   <Label [text]="meditation.name" [backgroundColor]="meditation.backgroundColor" [color]="meditation.fontColor"
-      width="100%" height="100%"></Label>
-</StackLayout>
+<GridLayout [backgroundColor]="meditation.backgroundColor" [color]="meditation.fontColor">
+   <ListView [items]="meditation.chapter">
+      <ng-template let-item="item">
+         <StackLayout>
+            <Label [text]="item.name" height="70" (tap)="onTapMeditation(item)"></Label>
+         </StackLayout>
+      </ng-template>
+   </ListView>
+
+</GridLayout>
