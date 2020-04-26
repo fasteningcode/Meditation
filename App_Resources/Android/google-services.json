@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "162243673064",
+    "firebase_url": "https://meditationprode.firebaseio.com",
+    "project_id": "meditationprode",
+    "storage_bucket": "meditationprode.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162243673064:android:343cbd82928fdb8135425d",
+        "android_client_info": {
+          "package_name": "org.nativescript.yogicmeditation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162243673064-ak6e489tcjm0dpo6kpd4ovc97sg58mqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvL9BLCGP_hAUE_HyfQEgie9bBdY_JjdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162243673064-ak6e489tcjm0dpo6kpd4ovc97sg58mqv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "162243673064-o1oo1v0h1vrgu7vs7kk010qaq926dtiv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.nativescript.yogicmeditation"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

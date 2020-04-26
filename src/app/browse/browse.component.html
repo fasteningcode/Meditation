@@ -1,0 +1,9 @@
+<GridLayout>
+    <ListView [items]="meditations$">
+        <ng-template let-item="item">
+            <StackLayout>
+                <Label [text]="item.name"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>
