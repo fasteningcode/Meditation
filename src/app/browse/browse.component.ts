@@ -1,3 +1,5 @@
+import { ActivatedRoute } from "@angular/router";
+import { RouterExtensions } from "nativescript-angular/router";
 import { MeditationService } from "./../service/meditation.service";
 import { MeditationModel } from "./../models/meditation.model";
 import { Component, OnInit } from "@angular/core";
@@ -11,8 +13,12 @@ export class BrowseComponent implements OnInit {
     meditations$: Array<MeditationModel>;
 
     constructor(private page: Page,
-                private meditationService: MeditationService
+        private meditationService: MeditationService,
+        private router: RouterExtensions,
+        private activatedRoute: ActivatedRoute
+
     ) {
+
         // Use the component constructor to inject providers.
     }
 
@@ -24,7 +30,10 @@ export class BrowseComponent implements OnInit {
         });
     }
 
-    onTapItem(args: any) {
-        console.log(args);
+    onTapMeditation(meditation: MeditationModel): void {
+        console.log(meditation);
+        this.meditationService.setBrowseMeditation(meditation);
+        this.router.navigate(["../details"], { relativeTo: this.activatedRoute });
+
     }
 }

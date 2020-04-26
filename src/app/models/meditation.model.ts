@@ -1,13 +1,13 @@
 export class MeditationModel {
-    id?: string;
+    id: string;
     name: string;
+    backgroundColor: string;
+    fontColor: string;
 
-    constructor(name: string, id?: string) {
+    constructor(name: string, backgroundColor: string, fontColor: string, id?: string) {
+        this.id = id;
         this.name = name;
-
-        if (id) {
-            this.id = id;
-        }
-
+        this.backgroundColor = backgroundColor;
+        this.fontColor = fontColor;
     }
 }

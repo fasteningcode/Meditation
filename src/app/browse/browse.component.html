@@ -2,7 +2,8 @@
     <ListView [items]="meditations$">
         <ng-template let-item="item">
             <StackLayout>
-                <Label [text]="item.name"></Label>
+                <Label [text]="item.name" [backgroundColor]="item.backgroundColor" [color]="item.fontColor" width="100%"
+                    height="70" (tap)="onTapMeditation(item)"></Label>
             </StackLayout>
         </ng-template>
     </ListView>
