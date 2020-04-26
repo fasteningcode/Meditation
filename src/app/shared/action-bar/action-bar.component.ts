@@ -15,8 +15,10 @@ export class ActionBarComponent implements OnInit {
     @Input() title: string;
     @Input() showBackButton = true;
     @Input() hasMenu = true;
+    @Input() backgroundColor: string = "#FFDF00";
     constructor(private page: Page, private routerExtension: RouterExtensions) { }
 
+    // tslint:disable-next-line: no-empty
     ngOnInit(): void {
     }
     onLoadedAction() {
@@ -45,9 +47,4 @@ export class ActionBarComponent implements OnInit {
     get android() {
         return isAndroid;
     }
-
-    // onToggleMenu() {
-    //     this.uiService.toggleDrawer();
-    // }
-
 }

@@ -23,7 +23,7 @@ export class BrowseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.page.actionBarHidden = true;
+        // this.page.actionBarHidden = true;
         this.meditationService.array$.subscribe((meditation) => {
             this.meditations$ = meditation;
             // console.log(meditation);

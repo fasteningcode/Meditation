@@ -1,4 +1,4 @@
-import { MeditationModel } from "./../models/meditation.model";
+import { MeditationModel, ChapterModel } from "./../models/meditation.model";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { take, filter, map, partition } from "rxjs/operators";
@@ -9,7 +9,9 @@ const firebase = require("nativescript-plugin-firebase/app");
 })
 export class MeditationService {
 
+    // tslint:disable-next-line: no-shadowed-variable
     private subject: BehaviorSubject<Array<MeditationModel>> = new BehaviorSubject<Array<MeditationModel>>([]);
+
     // tslint:disable-next-line: member-ordering
     array$: Observable<Array<MeditationModel>> = this.subject.asObservable();
 
@@ -20,23 +22,29 @@ export class MeditationService {
     create() {
         const meditationsCollection = firebase.firestore().collection("meditations");
         const meditationArray: Array<MeditationModel> = [
-            { id: "", name: "Ancient1", backgroundColor: "#D94E29", fontColor: "#E9F3F6" },
-            { id: "", name: "Ancient2", backgroundColor: "#60B7CE", fontColor: "#C0C8CA" }
-        ];
+            // tslint:disable-next-line: max-line-length
+            {
+                id: "", name: "Ancient1", backgroundColor: "#D94E29", fontColor: "#ffffff", chapter: [
+                    { id: "1", name: "Being Aware", playUri: "" }, { id: "2", name: "Getting Control", playUri: "" }]
+            },
+            {
+                id: "", name: "Ancient2", backgroundColor: "#252EDF", fontColor: "#ffffff", chapter: [
+                    { id: "1", name: "Being Aware", playUri: "" }, { id: "2", name: "Getting Control", playUri: "" }]
+            }
 
-        // tslint:disable-next-line: no-shadowed-variable
+        ];
         meditationArray.forEach((meditation) => {
             meditationsCollection.add({
                 name: meditation.name,
                 backgroundColor: meditation.backgroundColor,
-                fontColor: meditation.fontColor
+                fontColor: meditation.fontColor,
+                chapter: meditation.chapter
             }).then((document) => {
                 console.log("====================================");
                 console.log(document);
                 console.log("====================================");
             });
         });
-
     }
 
     fetchfromDb() {
@@ -44,8 +52,10 @@ export class MeditationService {
         const meditationsCollection = firebase.firestore().collection("meditations");
         meditationsCollection.get({ source: "server" }).then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+
                 // tslint:disable-next-line: max-line-length
-                this.addMeditationsToObservableArray(new MeditationModel(doc.data().name, doc.data().backgroundColor, doc.data().fontColor, doc.id));
+                this.addMeditationsToObservableArray(new MeditationModel(doc.id, doc.data().name, doc.data().backgroundColor, doc.data().fontColor, doc.data().chapter));
             });
         });
     }
