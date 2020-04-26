@@ -7,6 +7,7 @@ import { ActionBarComponent } from "./action-bar/action-bar.component";
     imports: [
         NativeScriptCommonModule
     ],
+    exports: [ActionBarComponent],
     schemas: [NO_ERRORS_SCHEMA]
 })
 export class SharedModule { }
