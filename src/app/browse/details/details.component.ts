@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
     }
 
     onTapMeditation(chapter) {
-        console.log(chapter);
+        // console.log(chapter);
         this.meditationService.setBrowseChapter(chapter);
         this.router.navigate(["../playerBrowse"], {relativeTo : this.activatedRoute});
     }

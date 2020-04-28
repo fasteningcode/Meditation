@@ -1,3 +1,5 @@
+import { ChapterModel } from "./chapter.model";
+
 export class MeditationModel {
     id: string;
     name: string;
@@ -12,11 +14,4 @@ export class MeditationModel {
         this.fontColor = fontColor;
         this.chapter = chapter;
     }
-}
-
-// tslint:disable-next-line: max-classes-per-file
-export class ChapterModel {
-    id: string;
-    name: string;
-    playUri: string;
 }

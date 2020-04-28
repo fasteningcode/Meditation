@@ -1,7 +1,8 @@
-import { MeditationModel, ChapterModel } from "./../models/meditation.model";
+import { MeditationModel } from "./../models/meditation.model";
+import { ChapterModel } from "../models/chapter.model";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
-import { take, filter, map, partition } from "rxjs/operators";
+import { take } from "rxjs/operators";
 const firebase = require("nativescript-plugin-firebase/app");
 
 @Injectable({
@@ -11,15 +12,54 @@ export class MeditationService {
 
     // tslint:disable-next-line: no-shadowed-variable
     private subject: BehaviorSubject<Array<MeditationModel>> = new BehaviorSubject<Array<MeditationModel>>([]);
-
     // tslint:disable-next-line: member-ordering
     array$: Observable<Array<MeditationModel>> = this.subject.asObservable();
 
     constructor() {
-        this.fetchfromDb();
+        this.fetchFromDb();
     }
 
-    // create() {
+    fetchFromDb() {
+        this.subject.next([]);
+        const meditationsCollection = firebase.firestore().collection("meditations");
+        meditationsCollection.get({ source: "server" }).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+               // console.log(doc.data());
+
+                // tslint:disable-next-line: max-line-length
+                this.addMeditationsToObservableArray(new MeditationModel(doc.id, doc.data().name, doc.data().backgroundColor, doc.data().fontColor, doc.data().chapter));
+            });
+        });
+    }
+
+    // BROWSE Single Meditation that can be shared in BROWSE
+    // tslint:disable-next-line: member-ordering
+    private browseMeditationSub: BehaviorSubject<MeditationModel> = new BehaviorSubject<MeditationModel>(null);
+
+    // BROWSE Single Meditation that can be shared in BROWSE
+    // tslint:disable-next-line: member-ordering
+    private browseChapterSub: BehaviorSubject<ChapterModel> = new BehaviorSubject<ChapterModel>(null);
+    // tslint:disable-next-line: member-ordering
+    browseMeditationObs: Observable<MeditationModel> = this.browseMeditationSub.asObservable();
+    // tslint:disable-next-line: member-ordering
+    browseChapterObs: Observable<ChapterModel> = this.browseChapterSub.asObservable();
+    // tslint:disable-next-line: member-ordering
+    setBrowseChapter(chapter: ChapterModel) {
+        this.browseChapterSub.next(chapter);
+    }  // tslint:disable-next-line: member-ordering
+    setBrowseMeditation(meditation: MeditationModel) {
+        this.browseMeditationSub.next(meditation);
+    }
+
+    private addMeditationsToObservableArray(meditation: MeditationModel) {
+        this.array$.pipe(take(1)).subscribe((val) => {
+            const newArr = [...val, meditation];
+            this.subject.next(newArr);
+        });
+    }
+
+}
+   // create() {
     //     const meditationsCollection = firebase.firestore().collection("meditations");
     //     const meditationArray: Array<MeditationModel> = [
     //         // tslint:disable-next-line: max-line-length
@@ -42,47 +82,3 @@ export class MeditationService {
     //         });
     //     });
     // }
-
-    fetchfromDb() {
-        this.subject.next([]);
-        const meditationsCollection = firebase.firestore().collection("meditations");
-        meditationsCollection.get({ source: "server" }).then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                console.log(doc.data());
-
-                // tslint:disable-next-line: max-line-length
-                this.addMeditationsToObservableArray(new MeditationModel(doc.id, doc.data().name, doc.data().backgroundColor, doc.data().fontColor, doc.data().chapter));
-            });
-        });
-    }
-
-    private addMeditationsToObservableArray(meditation: MeditationModel) {
-        this.array$.pipe(take(1)).subscribe((val) => {
-            const newArr = [...val, meditation];
-            this.subject.next(newArr);
-        });
-    }
-
-    // BROWSE Single Meditation that can be shared in BROWSE
-    // tslint:disable-next-line: member-ordering
-    private browseMeditationSub: BehaviorSubject<MeditationModel> = new BehaviorSubject<MeditationModel>(null);
-    // tslint:disable-next-line: member-ordering
-    browseMeditationObs: Observable<MeditationModel> = this.browseMeditationSub.asObservable();
-
-    // tslint:disable-next-line: member-ordering
-    setBrowseMeditation(meditation: MeditationModel) {
-        this.browseMeditationSub.next(meditation);
-    }
-
-    // BROWSE Single Meditation that can be shared in BROWSE
-    // tslint:disable-next-line: member-ordering
-    private browseChapterSub: BehaviorSubject<ChapterModel> = new BehaviorSubject<ChapterModel>(null);
-    // tslint:disable-next-line: member-ordering
-    browseChapterObs: Observable<ChapterModel> = this.browseChapterSub.asObservable();
-
-    // tslint:disable-next-line: member-ordering
-    setBrowseChapter(chapter: ChapterModel) {
-        this.browseChapterSub.next(chapter);
-    }
-
-}

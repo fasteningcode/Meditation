@@ -1,4 +1,4 @@
-import { MeditationService } from './../service/meditation.service';
+import { MeditationService } from "./../service/meditation.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -15,9 +15,7 @@ export class SearchComponent implements OnInit {
     }
 
     addMeditation() {
-        console.log('====================================');
-        console.log("Meditation Clicked");
-        console.log('====================================');
-        this.meditationService.create();
+      
+        // this.meditationService.create();
     }
 }

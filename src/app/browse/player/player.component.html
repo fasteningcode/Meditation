@@ -1,3 +1,3 @@
 <ns-action-bar [title]="chapter.name" [showBackButton]="true" [backgroundColor]="meditation.backgroundColor">
 </ns-action-bar>
-<Button [text]="chapter.playUri" class="btn btn-primary"></Button>
+<Button [text]="chapter.playUri" class="btn btn-primary" (tap)="onDownload()"></Button>
