@@ -1,3 +1,4 @@
+import { ChapterService } from "./chapter.service";
 import { FileRefModel } from "./../models/FileRef.model";
 import { BehaviorSubject, Observable } from "rxjs";
 import { ChapterModel } from "../models/chapter.model";
@@ -16,14 +17,15 @@ export class StorageService {
     // tslint:disable-next-line: member-ordering
     chapterLocalRefObs: Observable<any> = this.chapterLocalRefSubject.asObservable();
 
-    constructor(private meditationService: MeditationService) {
+    constructor(private meditationService: MeditationService,
+                private chapterService: ChapterService) {
 
         this.fetchChapterFromDb();
     }
 
     fetchChapterFromDb() {
 
-        this.meditationService.browseChapterObs.subscribe((data) => {
+        this.chapterService.browseChapterObs.subscribe((data) => {
             const pathReference = storage.ref().child(data.playUri);
             pathReference.getDownloadURL().then((url: string) => {
                // console.log(url);

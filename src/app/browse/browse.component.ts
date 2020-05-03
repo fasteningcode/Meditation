@@ -1,38 +1,48 @@
+import { ChapterService } from "./../service/chapter.service";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
 import { MeditationService } from "./../service/meditation.service";
 import { MeditationModel } from "./../models/meditation.model";
-import { Component, OnInit } from "@angular/core";
-import { Page } from "tns-core-modules/ui/page/page";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+// import { FilterMeditationPipe  } from "../service/filter-meditation.pipe";
 
 @Component({
     selector: "Browse",
-    templateUrl: "./browse.component.html"
+    templateUrl: "./browse.component.html",
+    styleUrls: ["./browse.component.scss"]
 })
 export class BrowseComponent implements OnInit {
     meditations$: Array<MeditationModel>;
+    meditationSub$: any;
+    meditationCategories: Array<string> = ["Mind Clarity", "Relax", "Sleep", "Anxiety", "Personal Growth"];
+    filterArgs = "Mind Clarity";
 
-    constructor(private page: Page,
-                private meditationService: MeditationService,
+    constructor(private meditationService: MeditationService,
+                private chapterService: ChapterService,
                 private router: RouterExtensions,
                 private activatedRoute: ActivatedRoute
-
-    ) {
-
-        // Use the component constructor to inject providers.
-    }
+    ) { }
 
     ngOnInit(): void {
         // this.page.actionBarHidden = true;
-        this.meditationService.array$.subscribe((meditation) => {
+        this.meditationSub$ = this.meditationService.array$.subscribe((meditation) => {
             this.meditations$ = meditation;
-            // console.log(meditation);
+            console.log(meditation);
         });
+    }
+
+    // ngOnDestroy(): void {
+    //     this.meditationSub$.Unsubscribe();
+    // }
+    onTapCategory(item: string) {
+        console.log(item);
+        this.filterArgs = item;
+
     }
 
     onTapMeditation(meditation: MeditationModel): void {
         // console.log(meditation);
-        this.meditationService.setBrowseMeditation(meditation);
+        this.chapterService.setBrowseMeditation(meditation);
         this.router.navigate(["../details"], { relativeTo: this.activatedRoute });
     }
 }

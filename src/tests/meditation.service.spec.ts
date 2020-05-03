@@ -1,8 +1,8 @@
-// import { TestBed } from '@angular/core/testing';
+// import { TestBed } from "@angular/core/testing";
 
-// import { MeditationService } from './meditation.service';
+// import { MeditationService } from "../app/service/meditation.service";
 
-// describe('MeditationService', () => {
+// describe("MeditationService", () => {
 //   let service: MeditationService;
 
 //   beforeEach(() => {
@@ -10,7 +10,7 @@
 //     service = TestBed.inject(MeditationService);
 //   });
 
-//   it('should be created', () => {
+//   it("should be created", () => {
 //     expect(service).toBeTruthy();
 //   });
 // });

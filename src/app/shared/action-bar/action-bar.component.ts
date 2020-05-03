@@ -7,14 +7,14 @@ declare var android: any;
 
 @Component({
     selector: "ns-action-bar",
-    templateUrl: "./action-bar.component.html",
+    templateUrl: "./action-bar.component.html"
 })
 export class ActionBarComponent implements OnInit {
 
     @Input() title: string;
     @Input() showBackButton = true;
     @Input() hasMenu = true;
-    @Input() backgroundColor: string = "#FFDF00";
+    @Input() backgroundColor: string; // = "#D2691E";
     constructor(private page: Page, private routerExtension: RouterExtensions) { }
 
     // tslint:disable-next-line: no-empty
@@ -24,10 +24,10 @@ export class ActionBarComponent implements OnInit {
         if (isAndroid) {
             const androidToolBar = this.page.actionBar.nativeView;
             const backButton = androidToolBar.getNavigationIcon();
-            // let color = '#171717';
-            let color = "#ffffff";
+
+            let color = "#737373";
             if (this.hasMenu) {
-                color = "#ffffff";
+                color = "#737373";
             }
             if (backButton) {
                 backButton.setColorFilter(android.graphics.Color.parseColor(color),

@@ -6,6 +6,7 @@ import { BrowseComponent } from "./browse.component";
 import { DetailsComponent } from "./details/details.component";
 import { SharedModule } from "./../shared/shared.module";
 import { PlayerComponent } from "./player/player.component";
+import { FilterMeditationPipe } from "../service/filter-meditation.pipe";
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { PlayerComponent } from "./player/player.component";
     declarations: [
         BrowseComponent,
         DetailsComponent,
-        PlayerComponent
+        PlayerComponent,
+        FilterMeditationPipe
     ],
     schemas: [
         NO_ERRORS_SCHEMA

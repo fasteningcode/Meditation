@@ -1,0 +1,21 @@
+.header-tiles {
+   width: 135;
+   height: 45;
+   border-radius: 8;
+   font-size: 14;
+   font-weight: 800;
+   margin: 20 0 15 15;
+   position: center;
+}
+
+.t1{
+    background: rgb(117, 199, 106);
+    background: linear-gradient(to right, rgb(163, 79, 115) 0%,rgb(177, 158, 89) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff59a2', endColorstr='#ffe97b',GradientType=1 );
+}
+
+.t2{
+    background: rgb(138,232,255);
+    background: linear-gradient(to right, rgb(138,232,255) 0%,rgb(149,31,255) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8ae8ff', endColorstr='#951fff',GradientType=1 );
+}

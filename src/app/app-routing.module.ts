@@ -7,6 +7,7 @@ const routes: Routes = [
     {
         path: "",
         redirectTo: "/(homeTab:home/default//browseTab:browse/default//searchTab:search/default)",
+        // redirectTo: "/(browseTab:browse/default//homeTab:home/default//searchTab:search/default)",
         pathMatch: "full"
     },
 

@@ -1,3 +1,4 @@
+import { ChapterService } from "./../../service/chapter.service";
 import { TNSPlayer } from "nativescript-audio";
 import { StorageService } from "./../../service/storage.service";
 import { MeditationModel } from "./../../models/meditation.model";
@@ -6,8 +7,8 @@ import { MeditationService } from "./../../service/meditation.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: "ns-player",
-  templateUrl: "./player.component.html"
+    selector: "ns-player",
+    templateUrl: "./player.component.html"
 })
 
 export class PlayerComponent implements OnInit {
@@ -16,17 +17,19 @@ export class PlayerComponent implements OnInit {
     meditation: MeditationModel;
     private player: TNSPlayer;
 
-    constructor(private meditationService: MeditationService, private storageService: StorageService) {
+    constructor(private meditationService: MeditationService,
+                private chapterService: ChapterService,
+                private storageService: StorageService) {
         this.player = new TNSPlayer();
         this.player.debug = true;
     }
 
     ngOnInit(): void {
-        this.meditationService.browseChapterObs.subscribe((data) => {
+        this.chapterService.browseChapterObs.subscribe((data) => {
             this.chapter = data;
         });
 
-        this.meditationService.browseMeditationObs.subscribe((data) => {
+        this.chapterService.browseMeditationObs.subscribe((data) => {
             this.meditation = data;
         });
 
