@@ -9,7 +9,6 @@ import { MeditationService } from "./../../service/meditation.service";
 @Component({
     selector: "ns-details",
     templateUrl: "./details.component.html",
-    styleUrls: ["./details.component.css"]
 })
 export class DetailsComponent implements OnInit {
 

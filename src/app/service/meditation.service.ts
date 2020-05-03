@@ -22,7 +22,7 @@ export class MeditationService {
     fetchFromDb() {
         this.subject.next([]);
         const meditationsCollection = firebase.firestore().collection("meditations");
-        meditationsCollection.get({ source: "server" }).then((querySnapshot) => {
+        meditationsCollection.get({ source: "server" }).then((querySnapshot: Array<any>) => {
             querySnapshot.forEach((doc) => {
                // console.log(doc.data());
 
