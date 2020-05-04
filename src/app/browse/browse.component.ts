@@ -14,8 +14,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 export class BrowseComponent implements OnInit {
     meditations$: Array<MeditationModel>;
     meditationSub$: any;
-    meditationCategories: Array<string> = ["Mind Clarity", "Relax", "Sleep", "Anxiety", "Personal Growth"];
-    filterArgs = "Mind Clarity";
+    meditationCategories: Array<string> = ["All", "Mind Clarity", "Relax", "Sleep", "Anxiety", "Personal Growth"];
+    filterArgs = "All";
 
     constructor(private meditationService: MeditationService,
                 private chapterService: ChapterService,
@@ -27,7 +27,7 @@ export class BrowseComponent implements OnInit {
         // this.page.actionBarHidden = true;
         this.meditationSub$ = this.meditationService.array$.subscribe((meditation) => {
             this.meditations$ = meditation;
-            console.log(meditation);
+            // console.log(meditation);
         });
     }
 
@@ -35,7 +35,7 @@ export class BrowseComponent implements OnInit {
     //     this.meditationSub$.Unsubscribe();
     // }
     onTapCategory(item: string) {
-        console.log(item);
+        // console.log(item);
         this.filterArgs = item;
 
     }

@@ -10,6 +10,7 @@ import { Component, OnInit } from "@angular/core";
     selector: "ns-player",
     templateUrl: "./player.component.html"
 })
+    // TODO - Show BG music for clock or soothing music.
 
 export class PlayerComponent implements OnInit {
 

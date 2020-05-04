@@ -42,12 +42,7 @@
             </ScrollView>
 
             <!-- RELAXATION -->
-            <!-- <GridLayout columns="auto,*,auto" rows="auto">
-                <Label col="0" row="0" class="font-weight-bold" paddingLeft="10" fontSize="20"
-                    text="Relaxation"></Label>
-                <Label col="2" row="0" class="font-weight-bold" marginRight="20" fontSize="14"
-                                            text="View All (146)"></Label>
-            </GridLayout> -->
+
             <ScrollView orientation="horizontal">
                 <StackLayout orientation="horizontal">
                     <StackLayout margin="20" *ngFor="let item of meditations$ | filterMeditation:filterArgs" (tap)="onTapMeditation(item)" >
@@ -58,7 +53,6 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-
 
         </StackLayout>
     </ScrollView>
