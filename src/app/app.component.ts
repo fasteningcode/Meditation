@@ -1,3 +1,4 @@
+import { Page } from "tns-core-modules/ui/page";
 import { Component, OnInit } from "@angular/core";
 const firebase = require("nativescript-plugin-firebase");
 

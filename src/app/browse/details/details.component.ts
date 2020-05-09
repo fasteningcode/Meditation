@@ -1,3 +1,4 @@
+import { Page } from "tns-core-modules/ui/page";
 import { ChapterService } from "./../../service/chapter.service";
 import { ActivatedRoute } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
@@ -14,9 +15,12 @@ export class DetailsComponent implements OnInit {
     meditation: MeditationModel;
     constructor(private chapterService: ChapterService,
                 private router: RouterExtensions,
-                private activatedRoute: ActivatedRoute) { }
+                private activatedRoute: ActivatedRoute,
+                private page: Page) { }
 
     ngOnInit(): void {
+        this.page.actionBarHidden = true;
+
         this.chapterService.browseMeditationObs.subscribe((data) => {
             this.meditation = data;
             console.log(data);

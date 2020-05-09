@@ -11,7 +11,7 @@ declare var android: any;
 })
 export class ActionBarComponent implements OnInit {
 
-    @Input() title: string;
+    @Input() title: string = null;
     @Input() showBackButton = true;
     @Input() hasMenu = true;
     @Input() backgroundColor: string; // = "#D2691E";

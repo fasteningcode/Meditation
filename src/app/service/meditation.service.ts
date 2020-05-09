@@ -23,10 +23,18 @@ export class MeditationService {
         const meditationsCollection = firebase.firestore().collection("meditations");
         meditationsCollection.get({ source: "server" }).then((querySnapshot: Array<any>) => {
             querySnapshot.forEach((doc) => {
-               // console.log(doc.data());
+                // console.log(doc.data());
 
-                // tslint:disable-next-line: max-line-length
-                this.addMeditationsToObservableArray(new MeditationModel(doc.id, doc.data().name, doc.data().backgroundColor, doc.data().fontColor, doc.data().chapter, doc.data().category));
+                this.addMeditationsToObservableArray(
+                    // tslint:disable-next-line: max-line-length
+                    new MeditationModel(
+                        doc.id,
+                        doc.data().name,
+                        doc.data().backgroundColor,
+                        "~/images/" + doc.data().name.replace(/ /g, "") + ".png", // computed from name
+                        doc.data().fontColor,
+                        doc.data().chapter,
+                        doc.data().category));
             });
         });
     }
