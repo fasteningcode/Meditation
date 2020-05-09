@@ -8,12 +8,12 @@
    <ScrollView orientation="vertical">
 
       <StackLayout>
-         <StackLayout class="meditationImage" [backgroundImage]="meditation.backgroundImage" stretch="aspectFit">
+         <StackLayout class="meditationImage" [backgroundImage]="meditation.backgroundImage">
 
             <GridLayout columns="auto,*,auto" rows="auto" col="0" row="0">
                <GridLayout columns="auto,*,auto" rows="auto,auto" col="0" row="2" marginBottom="5">
 
-                  <Image col="0" row="0" marginLeft="30" marginTop="20" height="25" width="35" (tap)="goBack()"
+                  <Image col="0" row="0" marginLeft="30" marginTop="25" height="25" width="35" (tap)="goBack()"
                      src="font://&#xf060;" class="fas t-36" color=#fff></Image>
 
                   <!-- <Label col="0" row="0"  fontSize="18" color="#FFFFFF" [text]="meditation.name"></Label> -->
