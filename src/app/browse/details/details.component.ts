@@ -16,7 +16,8 @@ export class DetailsComponent implements OnInit {
     constructor(private chapterService: ChapterService,
                 private router: RouterExtensions,
                 private activatedRoute: ActivatedRoute,
-                private page: Page) { }
+                private page: Page,
+                private routerExtension: RouterExtensions) { }
 
     ngOnInit(): void {
         this.page.actionBarHidden = true;
@@ -31,6 +32,9 @@ export class DetailsComponent implements OnInit {
         console.log(chapter);
         this.chapterService.setBrowseChapter(chapter);
         this.router.navigate(["../playerBrowse"], { relativeTo: this.activatedRoute });
+    }
+    goBack() {
+        this.routerExtension.backToPreviousPage();
     }
 
 }

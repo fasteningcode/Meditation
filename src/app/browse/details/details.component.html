@@ -1,26 +1,23 @@
-<ns-action-bar  [showBackButton]="true" [backgroundColor]="meditation.backgroundColor">
-</ns-action-bar>
+<!-- <ns-action-bar  [showBackButton]="true" [backgroundColor]="meditation.backgroundColor">
+</ns-action-bar> -->
 
 
 <GridLayout orientation="vertical" width="100%" height="100%" columns="*" rows="*,auto"
-[backgroundColor]="meditation.backgroundColor">
+   [backgroundColor]="meditation.backgroundColor">
    <!-- ALL HORIZONTAL SCROLL ITEMS -->
    <ScrollView orientation="vertical">
 
       <StackLayout>
-         <!-- <StackLayout paddingLeft="8" paddingBottom="20" marginTop="-10">
-            <Label [text]="meditation.name" padding="15" fontSize="24"></Label>
-         </StackLayout> -->
+         <StackLayout class="meditationImage" [backgroundImage]="meditation.backgroundImage" stretch="aspectFit">
 
-         <!-- Picture -->
-         <StackLayout class="meditationImage"
-           [backgroundImage]="meditation.backgroundImage" stretch="aspectFit">
-
-            <GridLayout columns="*" rows="auto,*,auto" height="100%">
+            <GridLayout columns="auto,*,auto" rows="auto" col="0" row="0">
                <GridLayout columns="auto,*,auto" rows="auto,auto" col="0" row="2" marginBottom="5">
-                  <Label col="0" row="0"  fontSize="18" color="#FFFFFF" [text]="meditation.name"></Label>
-               <!-- class="meditationTitles" -->
-                  <!-- <Label col="0" row="1" fontSize="16" color="#FFFFFF" text="By Yogi"></Label> -->
+
+                  <Image col="0" row="0" marginLeft="30" marginTop="20" height="25" width="35" (tap)="goBack()"
+                     src="font://&#xf060;" class="fas t-36" color=#fff></Image>
+
+                  <!-- <Label col="0" row="0"  fontSize="18" color="#FFFFFF" [text]="meditation.name"></Label> -->
+
                </GridLayout>
             </GridLayout>
          </StackLayout>
@@ -34,10 +31,9 @@
 
          <!-- RELAXATION -->
 
-         <ScrollView >
+         <ScrollView>
             <StackLayout>
-               <StackLayout margin="20" *ngFor="let item of meditation.chapter"
-                  (tap)="onTapMeditation(item)">
+               <StackLayout margin="20" *ngFor="let item of meditation.chapter" (tap)="onTapMeditation(item)">
                   <!-- <StackLayout height="110" width="90%" borderRadius="5" borderColor="#ffffff">
                   </StackLayout> -->
                   <Label fontSize="14" [text]="item.name"></Label>
